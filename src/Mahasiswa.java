@@ -1,4 +1,4 @@
-public class Mahasiswa {
+public class Mahasiswa implements Comparable<Mahasiswa> {
     private String Nama;
     private String NIM;
 
@@ -16,5 +16,10 @@ public class Mahasiswa {
 
     public String getNama() {
         return this.Nama;
+    }
+
+    @Override
+    public int compareTo(Mahasiswa o) {
+        return this.Nama.compareTo(o.getNama());
     }
 }

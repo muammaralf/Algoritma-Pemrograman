@@ -44,54 +44,50 @@ public class Siakad {
 
     public static void urutkanData() {
 
-        if (jumlahData > 0) {
-            Scanner scan = new Scanner(System.in);
-            int menu;
+        Scanner scan = new Scanner(System.in);
+        int menu;
 
 
-            System.out.println("Metode Pengurutan");
-            System.out.println("1. Exchange Sort");
-            System.out.println("2. Selection Sort");
-            System.out.println("3. Quick Sort");
-            System.out.println("4. Insertion Sort");
-            System.out.println("5. Bubble Sort");
-            System.out.println("6. Shell Sort");
-            System.out.println("7. Binary Insertion Sort");
-            System.out.print("Pilih Menu\n=> ");
-            menu = scan.nextInt();
+        System.out.println("Metode Pengurutan");
+        System.out.println("1. Exchange Sort");
+        System.out.println("2. Selection Sort");
+        System.out.println("3. Quick Sort");
+        System.out.println("4. Insertion Sort");
+        System.out.println("5. Bubble Sort");
+        System.out.println("6. Shell Sort");
+        System.out.println("7. Binary Insertion Sort");
+        System.out.print("Pilih Menu\n=> ");
+        menu = scan.nextInt();
 
-            //menu untuk memilih metode pengurutan
-            switch (menu) {
-                case 1: {
-                    exchangeSort();
-                    break;
-                }
-                case 2: {
-                    selectionSort();
-                    break;
-                }
-                case 3: {
-                    quickSort(mahasiswa, 0, jumlahData - 1);
-                }
-                case 4: {
-                    insertionSort();
-                    break;
-                }
-                case 5: {
-                    bubbleSort();
-                    break;
-                }
-                case 6: {
-                    shellSort();
-                    break;
-                }
-                case 7: {
-                    bInsertionSort();
-                    break;
-                }
+        //menu untuk memilih metode pengurutan
+        switch (menu) {
+            case 1: {
+                exchangeSort();
+                break;
             }
-        } else {
-            System.out.println("Tidak ada data\nSilakan tambah data terlebih dahulu");
+            case 2: {
+                selectionSort();
+                break;
+            }
+            case 3: {
+                quickSort(mahasiswa, 0, jumlahData-1);
+            }
+            case 4: {
+                insertionSort();
+                break;
+            }
+            case 5: {
+                bubbleSort();
+                break;
+            }
+            case 6: {
+                shellSort();
+                break;
+            }
+            case 7: {
+                bInsertionSort();
+                break;
+            }
         }
     }
 
@@ -378,6 +374,7 @@ public class Siakad {
                     System.out.println("Masukkan NIM yang baru");
                     String nimBaru = scan.nextLine();
                     mahasiswa[x].setNim(nimBaru);
+                    menu();
                 } else {
                     System.out.println("Data tidak ditemukan.");
                 }
@@ -395,6 +392,7 @@ public class Siakad {
                     System.out.println("Masukkan nim yang baru");
                     String nimBaru = scan.nextLine();
                     mahasiswa[x].setNim(nimBaru);
+                    menu();
                 } else {
                     System.out.println("Data tidak ditemukan.");
                 }
@@ -405,35 +403,7 @@ public class Siakad {
         }
     }
 
-    public static void UAS() {
-        if (jumlahData == 0) {
-            System.out.println("Tidak ada data\nSilakan tambah data terlebih dahulu");
-        } else {
-            int jarak = jumlahData,
-                    susut = 13,
-                    urut = 0;
-
-            while (urut == 0) {
-                jarak = (jarak*10)/susut;
-                if (jarak <= 1) {
-                    jarak = 1;
-                    urut = 1;
-                }
-                for (int i = 0; i + jarak < jumlahData; i++) {
-                    if (mahasiswa[i].getNim().compareTo(mahasiswa[i+jarak].getNim()) > 0) {
-                        Mahasiswa temp = mahasiswa[i];
-                        mahasiswa[i] = mahasiswa[i+jarak];
-                        mahasiswa[i+jarak] = temp;
-                        urut = 0;
-                    }
-                }
-            }
-            System.out.println("Data telah diurutkan\nSilakan tampilkan data");
-        }
-    }
-
-
-    public static void main(String[] args) {
+    public static void menu() {
         Scanner scan = new Scanner(System.in);
         int menu;
 
@@ -445,8 +415,7 @@ public class Siakad {
             System.out.println("4. Cari Data");
             System.out.println("5. Hapus Data");
             System.out.println("6. Edit Data");
-            System.out.println("7. UAS");
-            System.out.println("8. Keluar");
+            System.out.println("7. Keluar");
             System.out.print("Pilih Menu\n=> ");
             menu = scan.nextInt();
             switch (menu) {
@@ -468,14 +437,15 @@ public class Siakad {
                     break;
                 case 6:
                     editData();
-                    break;
                 case 7:
-                    UAS();
-                    break;
-                case 8:
                     System.out.println("Selesai");
                     System.exit(0);
             }
         } while (true);
+    }
+
+
+    public static void main(String[] args) {
+        menu();
     }
 }
